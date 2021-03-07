@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
 
 function App() {
+  const [theme, setTheme] = useState("red");
+
+  const onClickHandler = () => {
+    setTheme(theme === "red" ? "blue" : "red");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Text theme={theme} />
+      <button onClick={onClickHandler}>Change Theme</button>
     </div>
   );
 }
+
+function Text({theme}) {
+  return(
+    <h1 style = {{
+      color: `${theme}`
+    }}>{theme}</h1>
+  );
+  }
 
 export default App;
